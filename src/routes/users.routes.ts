@@ -11,22 +11,18 @@ const upload = multer(uploadConfig);
 
 // Rota POST
 usersRouter.post('/', async (request, response) => {
-  try {
-    const { name, email, password } = request.body;
+  const { name, email, password } = request.body;
 
-    const createUser = new CreateUserService();
-    const user = await createUser.execute({
-      name,
-      email,
-      password,
-    });
-    // @ts-expect-error Aqui vai ocorrer um erro, mas estou ignorando
-    delete user.password;
+  const createUser = new CreateUserService();
+  const user = await createUser.execute({
+    name,
+    email,
+    password,
+  });
+  // @ts-expect-error Aqui vai ocorrer um erro, mas estou ignorando
+  delete user.password;
 
-    return response.json(user);
-  } catch (err) {
-    return response.status(400).json({ Error: err.message });
-  }
+  return response.json(user);
 });
 
 usersRouter.patch(
@@ -34,19 +30,15 @@ usersRouter.patch(
   ensureAuthenticated,
   upload.single('avatar'),
   async (request, response) => {
-    try {
-      const updateUserAvatar = new UpdateUserAvatarService();
-      const user = await updateUserAvatar.execute({
-        user_id: request.user.id,
-        avatarFilename: request.file.filename,
-      });
-      // @ts-expect-error ignorar problema do password como obrigatorio e tirar ele
-      delete user.password;
+    const updateUserAvatar = new UpdateUserAvatarService();
+    const user = await updateUserAvatar.execute({
+      user_id: request.user.id,
+      avatarFilename: request.file.filename,
+    });
+    // @ts-expect-error ignorar problema do password como obrigatorio e tirar ele
+    delete user.password;
 
-      return response.json(user);
-    } catch (err) {
-      return response.status(400);
-    }
+    return response.json(user);
   },
 );
 
