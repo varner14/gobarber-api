@@ -1,14 +1,14 @@
 import { Router } from 'express';
-
-import AuthenticateUserService from '../services/AuthenticateUserService';
+import AuthenticateUserService from '@modules/users/services/AuthenticateUserService';
+import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
 
 const sessionsRouter = Router();
-
 // Rota POST
 sessionsRouter.post('/', async (request, response) => {
   const { email, password } = request.body;
 
-  const autheticateUser = new AuthenticateUserService();
+  const usersRepository = new UsersRepository();
+  const autheticateUser = new AuthenticateUserService(usersRepository);
 
   const { user, token } = await autheticateUser.execute({
     email,
