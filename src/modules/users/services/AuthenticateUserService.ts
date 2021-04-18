@@ -1,4 +1,3 @@
-/* eslint-disable lines-between-class-members */
 import { sign } from 'jsonwebtoken';
 import { injectable, inject } from 'tsyringe';
 
@@ -28,6 +27,7 @@ class AuthenticateUserService {
     @inject('HashProvider')
     private hashProvider: IHashProvider,
   ) {}
+
   public async execute({ email, password }: IRequest): Promise<IResponse> {
     const user = await this.usersRepository.findByEmail(email);
 

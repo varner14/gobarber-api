@@ -1,6 +1,3 @@
-/* eslint-disable no-shadow */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable spaced-comment */
 import FakeEmailProvider from '@shared/container/providers/MailProvider/fakes/FakeEmailProvider';
 import AppError from '@shared/errors/AppError';
 import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';

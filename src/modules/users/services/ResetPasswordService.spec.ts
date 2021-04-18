@@ -1,4 +1,3 @@
-/* eslint-disable spaced-comment */
 import AppError from '@shared/errors/AppError';
 import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
 import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
@@ -91,5 +90,3 @@ describe('ResetPasswordService', () => {
     ).rejects.toBeInstanceOf(AppError);
   });
 });
-
-//2h expiração
