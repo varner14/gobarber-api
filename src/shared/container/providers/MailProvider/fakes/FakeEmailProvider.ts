@@ -1,17 +1,10 @@
 /* eslint-disable lines-between-class-members */
+import ISendMailDTO from '../dtos/ISendMailDTO';
 import IMailProvider from '../models/IMailProvider';
 
-interface IMessage {
-  to: string;
-  body: string;
-}
-
 export default class FakeEmailProvider implements IMailProvider {
-  private messages: IMessage[] = [];
-  public async sendMail(to: string, body: string): Promise<void> {
-    this.messages.push({
-      to,
-      body,
-    });
+  private messages: ISendMailDTO[] = [];
+  public async sendMail(message: ISendMailDTO): Promise<void> {
+    this.messages.push(message);
   }
 }
