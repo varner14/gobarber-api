@@ -10,17 +10,6 @@ const appointmentsController = new AppointmentsController();
 
 appointmentsRouter.use(ensureAuthenticated);
 
-// Rota GET
-
-//appointmentsRouter.get('/', async (request, response) => {
-//  console.log(request.user);
-
-//  const appointments = await appointmentsRepository.find();
-
-//  return response.json(appointments);
-//});
-
-// Rota POST
 appointmentsRouter.post('/', appointmentsController.create);
 
 export default appointmentsRouter;
