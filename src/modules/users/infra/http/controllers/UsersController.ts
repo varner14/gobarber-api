@@ -1,4 +1,5 @@
 import CreateUserService from '@modules/users/services/CreateUserService';
+import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
@@ -12,9 +13,7 @@ export default class UsersController {
       email,
       password,
     });
-    // @ts-expect-error Aqui vai ocorrer um erro, mas estou ignorando
-    delete user.password;
 
-    return response.json(user);
+    return response.json(classToClass(user));
   }
 }
